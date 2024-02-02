@@ -13,7 +13,6 @@ import App from "./App.vue";
 import "./index.css";
 
 // UnoCSS
-// import "uno.css";
 import "virtual:uno.css";
 
 const app = createApp(App);
