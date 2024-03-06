@@ -8,10 +8,8 @@ import { resolve } from "path";
 import { loadEnv } from "vite";
 import { wrapperEnv } from "./build/util";
 import { OUTPUT_DIR } from "./build/constant";
-import os from "os";
 
 import UnoCSS from "unocss/vite";
-import { presetAttributify, presetTagify, presetIcons } from "unocss";
 
 //获取文件真实路径
 function pathResolve(dir: string) {
@@ -38,7 +36,13 @@ export default defineConfig(({ mode }) => {
       dedupe: ["vue"],
     },
     plugins: [
-      Vue(),
+      Vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: (tag) => tag.startsWith("i-"),
+          },
+        },
+      }),
       Components({
         dts: "src/components.d.ts",
         resolvers: [AntDesignVueResolver()],
